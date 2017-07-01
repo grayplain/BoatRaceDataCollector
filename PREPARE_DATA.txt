@@ -1,0 +1,60 @@
+INSERT INTO betTypeInfo(betName) values('単勝');
+INSERT INTO betTypeInfo(betName) values('複勝');
+INSERT INTO betTypeInfo(betName) values('２連単');
+INSERT INTO betTypeInfo(betName) values('２連複');
+INSERT INTO betTypeInfo(betName) values('拡連複');
+INSERT INTO betTypeInfo(betName) values('３連単');
+INSERT INTO betTypeInfo(betName) values('３連複');
+
+
+INSERT INTO raceFinishInfo( finishName) values('逃げ');
+INSERT INTO raceFinishInfo( finishName) values('差し');
+INSERT INTO raceFinishInfo( finishName) values('捲り');
+INSERT INTO raceFinishInfo( finishName) values('抜き');
+INSERT INTO raceFinishInfo( finishName) values('繰上');
+
+INSERT INTO racerGradeInfo( racerGradeName ) values('A1');
+INSERT INTO racerGradeInfo( racerGradeName ) values('A2');
+INSERT INTO racerGradeInfo( racerGradeName ) values('B1');
+INSERT INTO racerGradeInfo( racerGradeName ) values('B2');
+
+INSERT INTO courseBasicInfo(courseName , location ) values('桐　生' , '群馬県');
+INSERT INTO courseBasicInfo(courseName , location ) values('戸　田' , '埼玉県');
+INSERT INTO courseBasicInfo(courseName , location ) values('江戸川' , '東京都');
+INSERT INTO courseBasicInfo(courseName , location ) values('平和島' , '東京都');
+INSERT INTO courseBasicInfo(courseName , location ) values('多摩川' , '東京都');
+INSERT INTO courseBasicInfo(courseName , location ) values('浜名湖' , '静岡県');
+INSERT INTO courseBasicInfo(courseName , location ) values('蒲　郡' , '愛知県');
+INSERT INTO courseBasicInfo(courseName , location ) values('常　滑' , '愛知県');
+INSERT INTO courseBasicInfo(courseName , location ) values('津' , '三重県');
+INSERT INTO courseBasicInfo(courseName , location ) values('三　国' , '福井県');
+INSERT INTO courseBasicInfo(courseName , location ) values('琵琶湖' , '滋賀県');
+INSERT INTO courseBasicInfo(courseName , location ) values('住之江' , '大阪府');
+INSERT INTO courseBasicInfo(courseName , location ) values('尼　崎' , '兵庫県');
+INSERT INTO courseBasicInfo(courseName , location ) values('鳴　門' , '徳島県');
+INSERT INTO courseBasicInfo(courseName , location ) values('丸　亀' , '香川県');
+INSERT INTO courseBasicInfo(courseName , location ) values('児　島' , '岡山県');
+INSERT INTO courseBasicInfo(courseName , location ) values('宮　島' , '広島県');
+INSERT INTO courseBasicInfo(courseName , location ) values('徳　山' , '山口県');
+INSERT INTO courseBasicInfo(courseName , location ) values('下　関' , '山口県');
+INSERT INTO courseBasicInfo(courseName , location ) values('若　松' , '福岡県');
+INSERT INTO courseBasicInfo(courseName , location ) values('芦　屋' , '福岡県');
+INSERT INTO courseBasicInfo(courseName , location ) values('福　岡' , '福岡県');
+INSERT INTO courseBasicInfo(courseName , location ) values('唐　津' , '佐賀県');
+INSERT INTO courseBasicInfo(courseName , location ) values('大　村' , '長崎県');
+
+INSERT INTO titleGradeInfo( titleGradeName) values('SG');
+INSERT INTO titleGradeInfo( titleGradeName) values('G1');
+INSERT INTO titleGradeInfo( titleGradeName) values('G2');
+INSERT INTO titleGradeInfo( titleGradeName) values('G3');
+INSERT INTO titleGradeInfo( titleGradeName) values('一般戦');
+
+
+
+//テスト用に追加したデータを削除する。本番では絶対使用しないこと。
+DELETE FROM raceResult;
+DELETE FROM racerRecord;
+DELETE FROM courseCondition;
+ALTER TABLE raceResult AUTO_INCREMENT = 1;
+ALTER TABLE racerRecord AUTO_INCREMENT = 1;
+ALTER TABLE courseCondition AUTO_INCREMENT = 1;

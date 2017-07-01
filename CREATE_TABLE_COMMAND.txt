@@ -1,0 +1,175 @@
+競艇用のデータベースを作成する。
+	CREATE DATABASE BoatRace
+	
+
+各テーブルのテーブルを作成する
+
+
+
+CREATE TABLE racerBasicInfo
+  (racerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	 racerName varchar(20),
+branch varchar(10),
+birthDate date,
+gender bool,
+blood int,
+hometown varchar(20),
+trainedSeason int
+ );
+
+CREATE TABLE racerConditionInfo
+(racerID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ season date,
+ racerID int,
+ weight int
+ );
+
+
+CREATE TABLE racerGrade
+  (racerGradeID int NOT NULL PRIMARY KEY AUTO_INCREMENT ,
+  	 season date,
+	 racerID int
+	 racerGradeID int );
+
+CREATE TABLE racerGradeInfo
+  (racerGradeID int  NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	 racerGradeName varchar(10) );
+
+  
+CREATE TABLE racerRecord
+(
+raceDate date,
+courseID int,
+raceTitleID int,
+round int,
+racerRecordID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+orderArrival int,
+bibs int,
+racerID int,
+motorID int,
+boatID int,
+demoTime double,
+boatEntry int,
+startTiming double,
+raceTime double
+ );
+  
+CREATE TABLE courseBasicInfo
+(
+
+courseID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+courseName varchar(10),
+location varchar(10)
+);
+  
+CREATE TABLE raceTitleInfo
+(
+raceTitleID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+raceTitleName varchar(60) unique,
+titleGradeID int
+);
+
+CREATE TABLE titleGradeInfo
+(
+titleGradeID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+titleGradeName varchar(60) unique
+);
+
+
+CREATE TABLE courseCondition
+(
+raceDate date,
+courseID int,
+raceTitleID int,
+round int,
+courseConditironID int  NOT NULL PRIMARY KEY AUTO_INCREMENT  AUTO_INCREMENT,
+phase varchar(20),
+courseRange int,
+weather int,
+windDir int,
+waveHeight int,
+finishID int
+);
+
+CREATE TABLE raceFinishInfo
+(
+finishID int NOT NULL PRIMARY KEY AUTO_INCREMENT  AUTO_INCREMENT,
+finishName varchar(10)
+);
+
+CREATE TABLE raceResult
+(
+raceDate date,
+courseID int,
+raceTitleID int,
+racerResultID  int NOT NULL PRIMARY KEY AUTO_INCREMENT AUTO_INCREMENT,
+round int,
+betType int,  
+firstNumber int,
+secondNumber int,
+thirdNumber int,
+popularity int,
+payout int
+);
+
+CREATE TABLE betTypeInfo
+(
+betType int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+betName varchar(10)
+ );
+
+
+CREATE TABLE motorBasicInfo
+(registDate date,
+ motorID int,
+ courseID int
+ );
+
+CREATE TABLE motorRecord
+(
+registDate date,
+motorID int,
+courseID int,
+winRate double 
+ );
+ 
+ 
+CREATE TABLE boatBasicInfo
+(registDate date,
+ boatID int,
+ courseID int
+ );
+
+
+CREATE TABLE boatRecord
+(
+registDate date,
+boatID int,
+courseID int,
+winRate double 
+ );
+ 
+CREATE TABLE oddsInfo
+  (col_name1 data_type1, col_name2 data_type2, );
+  
+  
+CREATE VIEW courseConditionView 
+AS SELECT courseCondition.raceDate,courseName,raceTitleName,courseCondition.round,courseConditironID,courseRange,weather,windDir,waveHeight,finishName FROM courseCondition,courseBasicInfo,raceTitleInfo,raceFinishInfo 
+WHERE courseCondition.courseID = courseBasicInfo.courseID
+AND courseCondition.raceTitleID = raceTitleInfo.raceTitleID
+AND courseCondition.finishID = raceFinishInfo.finishID;  
+
+CREATE VIEW raceResultView 
+AS SELECT raceResult.raceDate,courseName,raceTitleName,raceResult.round,racerResultID,
+betName,firstNumber,secondNumber,thirdNumber,popularity,payout 
+FROM raceResult,courseBasicInfo,raceTitleInfo,betTypeInfo 
+WHERE raceResult.courseID = courseBasicInfo.courseID
+AND raceResult.raceTitleID = raceTitleInfo.raceTitleID
+AND raceResult.betType = betTypeInfo.betType;
+
+CREATE VIEW racerRecordView 
+AS SELECT raceDate,courseName,raceTitleName,round,racerRecordID,
+orderArrival,bibs,racerID,motorID,boatID,demoTime,boatEntry,startTiming,raceTime 
+FROM racerRecord,courseBasicInfo,raceTitleInfo 
+WHERE racerRecord.courseID = courseBasicInfo.courseID
+AND racerRecord.raceTitleID = raceTitleInfo.raceTitleID;
